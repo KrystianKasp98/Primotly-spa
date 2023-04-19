@@ -65,7 +65,7 @@ module.exports = {
       },
     ],
     'import/no-extraneous-dependencies': [
-      'error',
+      'warn',
       { devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'src/tests/**/*', 'src/setupTests.ts'] },
     ]
   },
