@@ -4,14 +4,19 @@ import {
   RouteObject
 } from 'react-router-dom';
 
+import { Home } from 'pages/home/Home';
+import { Character } from 'pages/character/Character';
+
+import { ROUTE } from '../../constants';
+
 const routesConfig: RouteObject[] = [
   {
-    path: '/',
-    element: <div>test</div>
+    path: ROUTE.HOME,
+    element: <Home />
   },
   {
-    path: 'character/:id',
-    element: <div>character</div>
+    path: ROUTE.CHARACTER,
+    element: <Character />
   }
 ];
 
