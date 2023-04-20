@@ -27,12 +27,12 @@ export const usePeople = () => {
       const peopleUrlsFromPlanets: string[] = [];
 
       planetData.forEach(({ residents }) => {
-        residents.forEach(resident => peopleUrlsFromPlanets.push(resident));
+        residents.forEach(url => peopleUrlsFromPlanets.push(url));
       });
 
-      const peopleUrlsToFetch = [...new Set(peopleUrlsFromPlanets)]
-        .filter(url => !fetchedPeopleUrls.includes(url))
-        .map(val => val.replace('https://swapi.dev/api', ''));
+      const peopleUrlsToFetch = [...new Set(peopleUrlsFromPlanets)].filter(
+        url => !fetchedPeopleUrls.includes(url)
+      );
 
       for await (const url of peopleUrlsToFetch) {
         const { data: person } = await axios.get<Person>(url);
