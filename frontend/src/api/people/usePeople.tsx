@@ -17,7 +17,7 @@ export const usePeople = () => {
       const {
         data: { results: peopleData }
       } = await axios.get<PeopleResDto>(`/people/?search=${name}`); // parse it by queryParamsUrl
-      // think about handling next pages, and about min limit query, and wrap it into react-use-Form
+      // think about handling next pages CHECK RES, and about min limit query, and wrap it into react-use-Form
 
       const {
         data: { results: planetData }
