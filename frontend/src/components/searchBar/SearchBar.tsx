@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { usePeople } from 'api/people/usePeople';
+
 import {
   SearchBarWrapper,
   StyledAppBar,
@@ -10,6 +12,7 @@ import {
 
 export const SearchBar = () => {
   const [text, setText] = useState<string>('');
+  const { fetchPeople, data } = usePeople();
 
   return (
     <SearchBarWrapper>
@@ -22,7 +25,9 @@ export const SearchBar = () => {
             value={text}
             onChange={e => setText(e.target.value)}
           />
-          <SubmitButton variant="contained">Search</SubmitButton>
+          <SubmitButton onClick={() => fetchPeople(text)} variant="contained">
+            Search
+          </SubmitButton>
         </Toolbar>
       </StyledAppBar>
     </SearchBarWrapper>
