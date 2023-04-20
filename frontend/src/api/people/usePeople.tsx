@@ -25,12 +25,12 @@ export const usePeople = () => {
 
       const fetchedPeopleUrls = peopleData.map(({ url }) => url);
       const peopleUrlsFromPlanets: string[] = [];
+
       planetData.forEach(({ residents }) => {
         residents.forEach(resident => peopleUrlsFromPlanets.push(resident));
       });
 
-      let peopleUrlsToFetch = [...new Set(peopleUrlsFromPlanets)];
-      peopleUrlsToFetch = peopleUrlsToFetch
+      const peopleUrlsToFetch = [...new Set(peopleUrlsFromPlanets)]
         .filter(url => !fetchedPeopleUrls.includes(url))
         .map(val => val.replace('https://swapi.dev/api', ''));
 
