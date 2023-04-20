@@ -12,8 +12,7 @@ import {
 
 export const SearchBar = () => {
   const [text, setText] = useState<string>('');
-  const { fetchPeople, data } = usePeople();
-
+  const { fetchPeople } = usePeople();
   return (
     <SearchBarWrapper>
       <StyledAppBar>
