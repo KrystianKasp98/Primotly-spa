@@ -38,9 +38,12 @@ export const usePeople = () => {
         const { data: person } = await axios.get<Person>(url);
         peopleData.push(person);
       }
+
       setData(peopleData);
     } catch (_error) {
       setErrorMessage('Something went wrong');
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
