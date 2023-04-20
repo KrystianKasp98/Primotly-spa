@@ -19,7 +19,8 @@
     "sourceMap": true,
     "declaration": true,
     "incremental": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "downlevelIteration": true
   },
   "include": ["src", "react-app-env.d.ts", "env.d.ts"],
   "exclude": ["node_modules", "build"]

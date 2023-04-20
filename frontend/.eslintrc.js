@@ -49,6 +49,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
     'prettier/prettier': 'error',
+    'no-restricted-syntax': 'warn',
     'import/order': [
       'error',
       {
