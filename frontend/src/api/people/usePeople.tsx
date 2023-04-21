@@ -8,23 +8,27 @@ import {
   PlanetResDto,
   FilmResDto,
   PersonFilms,
-  PeoplePagination
+  PeoplePagination,
+  PaginateOptions
 } from './people.types';
 
 export const usePeople = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [data, setData] = useState<PersonData[]>();
-  const [pagination, setPagination] = useState<PeoplePagination | null>(null);
+  const [pagination, setPagination] = useState<PeoplePagination>({
+    next: null,
+    previous: null
+  });
 
-  const fetch = useCallback(async (searchValue: string) => {
+  const fetchPeople = useCallback(async (url: string) => {
     setIsLoading(true);
     setErrorMessage(null);
 
     try {
       const {
         data: { results: peopleData, next, previous }
-      } = await axios.get<PeopleResDto>(`/people/?search=${searchValue}`);
+      } = await axios.get<PeopleResDto>(url);
       setPagination({ next, previous });
       const newData: PersonData[] = [];
       // think about handling next pages CHECK RES, and about min limit query, and wrap it into react-use-Form
@@ -57,7 +61,7 @@ export const usePeople = () => {
         });
       }
       // CREATE PAGINATE SYSTEM
-      console.log({ pagination });
+      // console.log({ pagination });
       setData(newData);
     } catch (_error) {
       setErrorMessage('Failed to fetch characters');
@@ -66,9 +70,25 @@ export const usePeople = () => {
     }
   }, []);
 
+  const fetch = (searchValue: string) =>
+    fetchPeople(`/people/?search=${searchValue}`);
+
+  // try refactor this
+  const paginate = (paginateOption: PaginateOptions) => {
+    if (pagination.next && paginateOption === 'next') {
+      return fetch(pagination.next);
+    }
+    if (pagination.previous && paginateOption === 'previous') {
+      return fetch(pagination.previous);
+    }
+    return null;
+  };
+
   return {
     data,
     fetch,
+    paginate,
+    pagination,
     isLoading,
     errorMessage
   };
