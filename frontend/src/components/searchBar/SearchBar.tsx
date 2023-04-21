@@ -14,7 +14,7 @@ import { QUERY_PARAM_SEARCH } from '../../constants';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
-  const { fetch } = usePeople();
+  const { fetch, pagination, paginateNext, paginatePrevious } = usePeople();
   const searchValue = params.get(QUERY_PARAM_SEARCH) || '';
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ export const SearchBar = () => {
       return prev;
     });
   };
-
+  // add loader, add pagination buttons, create a special component for this
   return (
     <SearchBarWrapper>
       <StyledAppBar>
@@ -40,6 +40,16 @@ export const SearchBar = () => {
           </SubmitButton>
         </Toolbar>
       </StyledAppBar>
+      <button
+        onClick={paginatePrevious}
+        type="button"
+        disabled={!pagination.previous}
+      >
+        previous
+      </button>
+      <button onClick={paginateNext} type="button" disabled={!pagination.next}>
+        next
+      </button>
     </SearchBarWrapper>
   );
 };
