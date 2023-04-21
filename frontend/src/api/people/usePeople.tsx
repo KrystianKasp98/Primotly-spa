@@ -8,8 +8,7 @@ import {
   PlanetResDto,
   FilmResDto,
   PersonFilms,
-  PeoplePagination,
-  PaginateOptions
+  PeoplePagination
 } from './people.types';
 
 export const usePeople = () => {
@@ -73,21 +72,16 @@ export const usePeople = () => {
   const fetch = (searchValue: string) =>
     fetchPeople(`/people/?search=${searchValue}`);
 
-  // try refactor this
-  const paginate = (paginateOption: PaginateOptions) => {
-    if (pagination.next && paginateOption === 'next') {
-      return fetch(pagination.next);
-    }
-    if (pagination.previous && paginateOption === 'previous') {
-      return fetch(pagination.previous);
-    }
-    return null;
-  };
+  const paginateNext = () => pagination.next && fetchPeople(pagination.next);
+
+  const paginatePrevious = () =>
+    pagination.previous && fetchPeople(pagination.previous);
 
   return {
     data,
     fetch,
-    paginate,
+    paginateNext,
+    paginatePrevious,
     pagination,
     isLoading,
     errorMessage

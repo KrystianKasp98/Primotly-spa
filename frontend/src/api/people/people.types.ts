@@ -22,8 +22,6 @@ export type PeoplePagination = {
   previous: string | null;
 };
 
-export type PaginateOptions = 'next' | 'previous';
-
 export type PeopleResDto = PeoplePagination & {
   count: number;
   results: PersonResDto[];
