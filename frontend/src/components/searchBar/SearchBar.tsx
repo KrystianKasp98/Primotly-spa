@@ -14,7 +14,7 @@ import { QUERY_PARAM_SEARCH } from '../../constants';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
-  const { fetchPeople } = usePeople();
+  const { fetch } = usePeople();
   const searchValue = params.get(QUERY_PARAM_SEARCH) || '';
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,10 +35,7 @@ export const SearchBar = () => {
             value={searchValue}
             onChange={handleOnChange}
           />
-          <SubmitButton
-            onClick={() => fetchPeople(searchValue)}
-            variant="contained"
-          >
+          <SubmitButton onClick={() => fetch(searchValue)} variant="contained">
             Search
           </SubmitButton>
         </Toolbar>

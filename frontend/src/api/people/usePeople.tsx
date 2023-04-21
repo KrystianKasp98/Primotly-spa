@@ -68,7 +68,7 @@ export const usePeople = () => {
 
   return {
     data,
-    fetchPeople: fetch,
+    fetch,
     isLoading,
     errorMessage
   };
