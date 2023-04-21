@@ -16,12 +16,15 @@ export const usePeople = () => {
     try {
       const {
         data: { results: peopleData }
-      } = await axios.get<PeopleResDto>(`/people/?search=${name}`); // parse it by queryParamsUrl
+      } = await axios.get<PeopleResDto>(`/people/?search=${name}`);
       // think about handling next pages CHECK RES, and about min limit query, and wrap it into react-use-Form
       // if data.count > 10 do fetch next page
+
+      // CREATE PAGINATE SYSTEM
+
       const {
         data: { results: planetData }
-      } = await axios.get<PlanetResDto>(`/planets/?search=${name}`); // parse it by queryParamsUrl
+      } = await axios.get<PlanetResDto>(`/planets/?search=${name}`);
       // if data.count > 10 do fetch next page
 
       const fetchedPeopleUrls = peopleData.map(({ url }) => url);
