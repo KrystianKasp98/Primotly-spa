@@ -1,11 +1,4 @@
-type DefaultResDto<T> = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T[];
-};
-
-export type Person = {
+type PersonResDto = {
   name: string;
   height: string;
   mass: string;
@@ -24,7 +17,17 @@ export type Person = {
   url: string;
 };
 
-type Planet = {
+export type PeoplePagination = {
+  next: string | null;
+  previous: string | null;
+};
+
+export type PeopleResDto = PeoplePagination & {
+  count: number;
+  results: PersonResDto[];
+};
+
+export type PlanetResDto = {
   name: string;
   rotation_period: string;
   orbital_period: string;
@@ -41,5 +44,36 @@ type Planet = {
   url: string;
 };
 
-export type PeopleResDto = DefaultResDto<Person>;
-export type PlanetResDto = DefaultResDto<Planet>;
+export type FilmResDto = {
+  title: string;
+  episode_id: number;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  characters: string[];
+  planets: string[];
+  starships: string[];
+  vehicles: string[];
+  species: string[];
+  created: string;
+  edited: string;
+  url: string;
+};
+
+type PersonHomeworld = {
+  name: string;
+  population: string;
+};
+
+export type PersonFilms = {
+  title: string;
+  release_date: string;
+  opening_crawl: string; // limited to 130 characters, fix displaying opening_crawl
+};
+
+export type PersonData = {
+  name: string;
+  homeworld: PersonHomeworld;
+  films: PersonFilms[];
+};
