@@ -49,7 +49,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
     'prettier/prettier': 'error',
-    'no-restricted-syntax': 'warn',
+    'no-restricted-syntax': 'off',
     'import/order': [
       'error',
       {
@@ -78,5 +78,11 @@ module.exports = {
       files: ['**/?(*.)+(test).ts?(x)'],
       extends: ['plugin:testing-library/react', 'plugin:jest/recommended'],
     },
+    {
+      "files": ["*.types.ts", "use*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
+    }
   ],
 };
