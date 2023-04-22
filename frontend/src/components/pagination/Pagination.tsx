@@ -3,6 +3,10 @@ import {
   PaginationButton,
   PaginationWrapper
 } from 'components/common/mui/components';
+import {
+  NavigateBeforeIcon,
+  NavigateNextIcon
+} from 'components/common/mui/icons';
 
 export const Pagination = () => {
   const { pagination, paginateNext, paginatePrevious } = usePeopleContext();
@@ -14,14 +18,14 @@ export const Pagination = () => {
         type="button"
         disabled={!pagination.previous}
       >
-        &lt;
+        <NavigateBeforeIcon />
       </PaginationButton>
       <PaginationButton
         onClick={paginateNext}
         type="button"
         disabled={!pagination.next}
       >
-        &gt;
+        <NavigateNextIcon />
       </PaginationButton>
     </PaginationWrapper>
   );

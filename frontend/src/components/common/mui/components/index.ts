@@ -34,27 +34,28 @@ const PaginationWrapper = styled(Box)(() => ({
   bottom: '100px',
   left: '50%',
   transform: 'translate(-50%)',
-  width: '500px',
-  height: '40px',
+  width: '550px',
+  height: '50px',
   backgroundColor: '#fff',
-  borderRadius: '7px',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '0 10px'
+  justifyContent: 'space-between'
 }));
 
 const PaginationButton = styled('button')(() => ({
   color: '#000',
   backgroundColor: '#fff',
-  borderRadius: '50%',
   border: 'none',
   outline: 'none',
-  padding: '10px',
+  padding: '11px',
   cursor: 'pointer',
   '&:hover': {
     color: '#fff',
     backgroundColor: '#000'
+  },
+  '&:disabled': {
+    color: '#777',
+    backgroundColor: '#ddd'
   }
 }));
 
