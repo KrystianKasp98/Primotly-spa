@@ -2,12 +2,18 @@ import React from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { PeopleContextController } from 'context/PeopleContextController';
+
 type ProvidersProps = {
   children: React.ReactNode;
 };
 
 const Providers = ({ children }: ProvidersProps) => {
-  return <BrowserRouter>{children}</BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <PeopleContextController>{children}</PeopleContextController>
+    </BrowserRouter>
+  );
 };
 
 export const customRender = (
