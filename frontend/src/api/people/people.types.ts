@@ -61,9 +61,13 @@ export type FilmResDto = {
   url: string;
 };
 
-type PersonHomeworld = {
+export type PersonHomeworld = {
   name: string;
   population: string;
+};
+
+export type StoredPlanet = PersonHomeworld & {
+  url: string;
 };
 
 export type PersonFilm = {

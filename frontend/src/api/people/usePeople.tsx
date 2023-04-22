@@ -8,8 +8,10 @@ import {
   PlanetResDto,
   FilmResDto,
   PersonFilm,
+  PersonHomeworld,
   PeoplePagination,
-  StoredFilm
+  StoredFilm,
+  StoredPlanet
 } from './people.types';
 
 export const usePeople = () => {
@@ -30,56 +32,84 @@ export const usePeople = () => {
         data: { results: peopleData, next, previous }
       } = await axios.get<PeopleResDto>(urlString);
       setPagination({ next, previous });
+
       const newData: PersonData[] = [];
-      // think about handling next pages CHECK RES, and about min limit query, and wrap it into react-use-Form
-      // if data.count > 10 do fetch next page
-      const fetchedFilms: StoredFilm[] = [];
+      const storedFilms: StoredFilm[] = [];
+      const storedPlanets: StoredPlanet[] = [];
+
       for await (const { homeworld, films, name } of peopleData) {
-        const { data: planetData } = await axios.get<PlanetResDto>(homeworld);
-
+        let personHomeworld: PersonHomeworld;
         const personFilms: PersonFilm[] = [];
-        for await (const film of films) {
-          // https://swapi.dev/api/films/1/
 
-          const storedPersonFilm = fetchedFilms.find(
+        const storedPlanet = storedPlanets.find(
+          planet => planet.url === homeworld
+        );
+
+        if (storedPlanet) {
+          personHomeworld = {
+            name: storedPlanet.name,
+            population: storedPlanet.population
+          };
+        } else {
+          const { data: fetchedPlanet } = await axios.get<PlanetResDto>(
+            homeworld
+          );
+          personHomeworld = {
+            name: fetchedPlanet.name,
+            population: fetchedPlanet.population
+          };
+          storedPlanets.push({ ...personHomeworld, url: fetchedPlanet.url });
+        }
+
+        for await (const film of films) {
+          const storedFilm = storedFilms.find(
             fetchedFilm => fetchedFilm.url === film
           );
-          if (storedPersonFilm) {
-            personFilms.push(storedPersonFilm);
+
+          if (storedFilm) {
+            personFilms.push({
+              title: storedFilm.title,
+              opening_crawl: storedFilm.opening_crawl,
+              release_date: storedFilm.release_date
+            });
           } else {
             const {
               data: { url, title, opening_crawl, release_date }
             } = await axios.get<FilmResDto>(film);
 
-            fetchedFilms.push({ url, title, opening_crawl, release_date });
-
-            personFilms.push({
+            const personFilm = {
               title,
               opening_crawl:
                 opening_crawl.length > 130
-                  ? `${opening_crawl.slice(0, 127)}...`
-                  : opening_crawl, // refactor this create own method
+                  ? `${opening_crawl.slice(0, 127)}...` // think about refactor
+                  : opening_crawl,
               release_date
+            };
+
+            storedFilms.push({
+              url,
+              ...personFilm
             });
+
+            personFilms.push(personFilm);
           }
         }
 
         newData.push({
           name,
-          homeworld: {
-            name: planetData.name,
-            population: planetData.population
-          },
+          homeworld: personHomeworld,
           films: personFilms
         });
       }
 
-      console.log('sdfsfds', { fetchedFilms });
-      // CREATE PAGINATE SYSTEM
-      // console.log({ pagination });
       setData(newData);
     } catch (_error) {
       setErrorMessage('Failed to fetch characters');
+      setPagination({
+        next: null,
+        previous: null
+      });
+      setData([]);
     } finally {
       setIsLoading(false);
     }
