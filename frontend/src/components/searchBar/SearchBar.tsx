@@ -29,9 +29,8 @@ export const SearchBar = () => {
       <StyledAppBar>
         <Toolbar>
           <SearchInput
-            placeholder="Search…"
+            placeholder="Search characters..."
             inputProps={{ 'aria-label': 'search' }}
-            sx={{ width: '100%', color: '#000' }}
             value={searchValue}
             onChange={handleOnChange}
           />
