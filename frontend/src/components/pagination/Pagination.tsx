@@ -20,6 +20,11 @@ export const Pagination = () => {
       >
         <NavigateBeforeIcon />
       </PaginationButton>
+      {pagination.page && pagination.count ? (
+        <span style={{ color: '#000' }}>
+          {pagination.page} of {Math.round(pagination.count / 10)}
+        </span>
+      ) : null}
       <PaginationButton
         onClick={paginateNext}
         type="button"

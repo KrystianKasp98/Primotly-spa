@@ -21,6 +21,7 @@ export type PeoplePagination = {
   next: string | null;
   previous: string | null;
   count: number | null;
+  page: number | null;
 };
 
 export type PeopleResDto = PeoplePagination & {

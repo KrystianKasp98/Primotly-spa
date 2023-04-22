@@ -23,7 +23,8 @@ const storedPlanets: StoredPlanet[] = [];
 const defaultPagination: PeoplePagination = {
   next: null,
   previous: null,
-  count: null
+  count: null,
+  page: null
 };
 
 export const usePeople = () => {
@@ -53,7 +54,12 @@ export const usePeople = () => {
       const {
         data: { results: peopleData, next, previous, count }
       } = await axios.get<PeopleResDto>(urlString);
-      setPagination({ next, previous, count });
+      setPagination({
+        next,
+        previous,
+        count,
+        page: Number(params.get(QUERY_PARAM.page))
+      });
 
       const newData: PersonData[] = [];
 
@@ -151,8 +157,8 @@ export const usePeople = () => {
   useEffect(() => {
     const searchValue = params.get(QUERY_PARAM.search);
     const page = params.get('page') || '1';
-    if (searchValue) {
-      fetch(searchValue, page);
+    if (searchValue || page !== '1') {
+      fetch(searchValue || '', page);
     }
   }, []);
 
