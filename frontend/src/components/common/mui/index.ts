@@ -27,4 +27,20 @@ const SubmitButton = styled(Button)(() => ({
   }
 }));
 
-export { SearchBarWrapper, StyledAppBar, Toolbar, SubmitButton, SearchInput };
+const PaginationButton = styled(Button)(() => ({
+  color: '#000',
+  backgroundColor: '#fff',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#000'
+  }
+}));
+
+export {
+  SearchBarWrapper,
+  StyledAppBar,
+  Toolbar,
+  SubmitButton,
+  SearchInput,
+  PaginationButton
+};

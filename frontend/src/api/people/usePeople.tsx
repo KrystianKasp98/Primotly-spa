@@ -1,6 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { cutString } from 'utils/methods';
+import { QUERY_PARAM_SEARCH } from 'utils/constants';
 
 import { axios } from '../axios';
 
@@ -25,6 +27,7 @@ const defaultPagination: PeoplePagination = {
 };
 
 export const usePeople = () => {
+  const [params] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [data, setData] = useState<PersonData[] | null>(null);
@@ -131,6 +134,13 @@ export const usePeople = () => {
     }
     return Promise.reject();
   };
+
+  useEffect(() => {
+    const searchValue = params.get(QUERY_PARAM_SEARCH);
+    if (searchValue) {
+      fetch(searchValue);
+    }
+  }, []);
 
   return {
     data,
