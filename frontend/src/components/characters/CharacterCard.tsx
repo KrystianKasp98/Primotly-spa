@@ -11,7 +11,7 @@ export const CharacterCard = ({
   homeWorldPopulation
 }: CharacterCardProps) => {
   return (
-    <Card sx={{ width: 300, height: 150 }}>
+    <Card sx={{ width: 300 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
