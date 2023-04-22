@@ -6,6 +6,7 @@ import {
 
 import { Home } from 'pages/home/Home';
 import { Character } from 'pages/character/Character';
+import { PeopleContextController } from 'context/PeopleContextController';
 
 import { ROUTE } from '../../constants';
 
@@ -23,5 +24,9 @@ const routesConfig: RouteObject[] = [
 const router = createBrowserRouter(routesConfig);
 
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <PeopleContextController>
+      <RouterProvider router={router} />;
+    </PeopleContextController>
+  );
 };

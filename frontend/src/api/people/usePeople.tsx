@@ -12,9 +12,9 @@ import {
 } from './people.types';
 
 export const usePeople = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [data, setData] = useState<PersonData[]>();
+  const [data, setData] = useState<PersonData[]>([]);
   const [pagination, setPagination] = useState<PeoplePagination>({
     next: null,
     previous: null
@@ -72,10 +72,19 @@ export const usePeople = () => {
   const fetch = (searchValue: string) =>
     fetchPeople(`/people/?search=${searchValue}`);
 
-  const paginateNext = () => pagination.next && fetchPeople(pagination.next);
+  const paginateNext = () => {
+    if (pagination.next) {
+      return fetchPeople(pagination.next);
+    }
+    return Promise.reject();
+  };
 
-  const paginatePrevious = () =>
-    pagination.previous && fetchPeople(pagination.previous);
+  const paginatePrevious = () => {
+    if (pagination.previous) {
+      return fetchPeople(pagination.previous);
+    }
+    return Promise.reject();
+  };
 
   return {
     data,

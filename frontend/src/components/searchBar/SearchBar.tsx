@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { usePeople } from 'api/people/usePeople';
+import { usePeopleContext } from 'context/usePeopleContext';
 
 import {
   SearchBarWrapper,
@@ -14,7 +14,7 @@ import { QUERY_PARAM_SEARCH } from '../../constants';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
-  const { fetch, pagination, paginateNext, paginatePrevious } = usePeople();
+  const { fetch } = usePeopleContext();
   const searchValue = params.get(QUERY_PARAM_SEARCH) || '';
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ export const SearchBar = () => {
       return prev;
     });
   };
-  // add loader, add pagination buttons, create a special component for this
+  // add loader for charcters content,
   return (
     <SearchBarWrapper>
       <StyledAppBar>
@@ -40,16 +40,6 @@ export const SearchBar = () => {
           </SubmitButton>
         </Toolbar>
       </StyledAppBar>
-      <button
-        onClick={paginatePrevious}
-        type="button"
-        disabled={!pagination.previous}
-      >
-        previous
-      </button>
-      <button onClick={paginateNext} type="button" disabled={!pagination.next}>
-        next
-      </button>
     </SearchBarWrapper>
   );
 };
