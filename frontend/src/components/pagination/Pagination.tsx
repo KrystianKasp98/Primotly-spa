@@ -5,7 +5,7 @@ import { PaginationButton, PaginationWrapper } from './Pagination.styled';
 
 export const Pagination = () => {
   const { pagination, paginateNext, paginatePrevious } = usePeopleContext();
-  console.log({ pagination }); // remove it later
+
   return (
     <PaginationWrapper className="pagination" data-testid="pagination">
       <PaginationButton
