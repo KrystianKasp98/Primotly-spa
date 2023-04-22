@@ -14,6 +14,9 @@ import {
   StoredPlanet
 } from './people.types';
 
+const storedFilms: StoredFilm[] = [];
+const storedPlanets: StoredPlanet[] = [];
+
 export const usePeople = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -34,8 +37,6 @@ export const usePeople = () => {
       setPagination({ next, previous });
 
       const newData: PersonData[] = [];
-      const storedFilms: StoredFilm[] = [];
-      const storedPlanets: StoredPlanet[] = [];
 
       for await (const { homeworld, films, name } of peopleData) {
         let personHomeworld: PersonHomeworld;
