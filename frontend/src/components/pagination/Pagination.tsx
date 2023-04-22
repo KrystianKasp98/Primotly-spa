@@ -17,7 +17,7 @@ export const Pagination = () => {
       </PaginationButton>
       {pagination.page && pagination.count ? (
         <span style={{ color: '#000' }}>
-          {pagination.page} of {Math.round(pagination.count / 10)}
+          {pagination.page} of {Math.max(Math.round(pagination.count / 10), 1)}
         </span>
       ) : null}
       <PaginationButton
