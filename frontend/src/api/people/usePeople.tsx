@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import queryString from 'query-string';
+import axios from 'axios';
 
 import { cutString } from 'utils/methods';
 import { QUERY_PARAM } from 'utils/constants';
-
-import { axios } from '../axios';
 
 import {
   PeopleResDto,
