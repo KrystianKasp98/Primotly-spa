@@ -7,8 +7,9 @@ import {
   PersonData,
   PlanetResDto,
   FilmResDto,
-  PersonFilms,
-  PeoplePagination
+  PersonFilm,
+  PeoplePagination,
+  StoredFilm
 } from './people.types';
 
 export const usePeople = () => {
@@ -20,34 +21,47 @@ export const usePeople = () => {
     previous: null
   });
 
-  const fetchPeople = useCallback(async (url: string) => {
+  const fetchPeople = useCallback(async (urlString: string) => {
     setIsLoading(true);
     setErrorMessage(null);
 
     try {
       const {
         data: { results: peopleData, next, previous }
-      } = await axios.get<PeopleResDto>(url);
+      } = await axios.get<PeopleResDto>(urlString);
       setPagination({ next, previous });
       const newData: PersonData[] = [];
       // think about handling next pages CHECK RES, and about min limit query, and wrap it into react-use-Form
       // if data.count > 10 do fetch next page
+      const fetchedFilms: StoredFilm[] = [];
       for await (const { homeworld, films, name } of peopleData) {
         const { data: planetData } = await axios.get<PlanetResDto>(homeworld);
 
-        const personFilms: PersonFilms[] = [];
+        const personFilms: PersonFilm[] = [];
         for await (const film of films) {
-          const {
-            data: { title, opening_crawl, release_date }
-          } = await axios.get<FilmResDto>(film);
-          personFilms.push({
-            title,
-            opening_crawl:
-              opening_crawl.length > 130
-                ? `${opening_crawl.slice(0, 127)}...`
-                : opening_crawl, // refactor this create own method
-            release_date
-          });
+          // https://swapi.dev/api/films/1/
+
+          const storedPersonFilm = fetchedFilms.find(
+            fetchedFilm => fetchedFilm.url === film
+          );
+          if (storedPersonFilm) {
+            personFilms.push(storedPersonFilm);
+          } else {
+            const {
+              data: { url, title, opening_crawl, release_date }
+            } = await axios.get<FilmResDto>(film);
+
+            fetchedFilms.push({ url, title, opening_crawl, release_date });
+
+            personFilms.push({
+              title,
+              opening_crawl:
+                opening_crawl.length > 130
+                  ? `${opening_crawl.slice(0, 127)}...`
+                  : opening_crawl, // refactor this create own method
+              release_date
+            });
+          }
         }
 
         newData.push({
@@ -59,6 +73,8 @@ export const usePeople = () => {
           films: personFilms
         });
       }
+
+      console.log('sdfsfds', { fetchedFilms });
       // CREATE PAGINATE SYSTEM
       // console.log({ pagination });
       setData(newData);

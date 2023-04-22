@@ -66,14 +66,18 @@ type PersonHomeworld = {
   population: string;
 };
 
-export type PersonFilms = {
+export type PersonFilm = {
   title: string;
   release_date: string;
   opening_crawl: string; // limited to 130 characters, fix displaying opening_crawl
 };
 
+export type StoredFilm = PersonFilm & {
+  url: string;
+};
+
 export type PersonData = {
   name: string;
   homeworld: PersonHomeworld;
-  films: PersonFilms[];
+  films: PersonFilm[];
 };
