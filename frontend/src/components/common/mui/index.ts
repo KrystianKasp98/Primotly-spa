@@ -35,16 +35,23 @@ const PaginationWrapper = styled(Box)(() => ({
   left: '50%',
   transform: 'translate(-50%)',
   width: '500px',
+  height: '40px',
   backgroundColor: '#fff',
   borderRadius: '7px',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  padding: '0 10px'
 }));
 
-const PaginationButton = styled(Button)(() => ({
+const PaginationButton = styled('button')(() => ({
   color: '#000',
   backgroundColor: '#fff',
+  borderRadius: '50%',
+  border: 'none',
+  outline: 'none',
+  padding: '10px',
+  cursor: 'pointer',
   '&:hover': {
     color: '#fff',
     backgroundColor: '#000'
