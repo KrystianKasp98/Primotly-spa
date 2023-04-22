@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { Typography } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { PeopleContextController } from 'context/PeopleContextController';
 import { SearchBar } from 'components/searchBar/SearchBar';
@@ -22,6 +24,18 @@ export const Home = () => {
         <Characters />
         <Pagination />
       </HomeWrapper>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </PeopleContextController>
   );
 };
