@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-
 import { usePeopleContext } from 'context/usePeopleContext';
 import { Spinner } from 'components/common/spinner/Spinner';
 
@@ -8,13 +5,7 @@ import { CharacterCard } from './CharacterCard';
 import { CharactersWrapper } from './Characters.styled';
 
 export const Characters = () => {
-  const { data, isLoading, errorMessage } = usePeopleContext();
-
-  useEffect(() => {
-    if (errorMessage) {
-      toast.error(errorMessage);
-    }
-  }, [errorMessage]);
+  const { data, isLoading } = usePeopleContext();
 
   return (
     <CharactersWrapper className="characters" data-testid="characters">

@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { cutString, parseUrl } from 'utils/methods';
 import { QUERY_PARAM } from 'utils/constants';
@@ -159,6 +160,12 @@ export const usePeople = () => {
       fetch(searchValue || '', page);
     }
   }, []);
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+    }
+  }, [errorMessage]);
 
   return {
     data,
