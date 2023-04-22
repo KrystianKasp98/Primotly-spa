@@ -74,7 +74,7 @@ export type StoredPlanet = PersonHomeworld & {
 export type PersonFilm = {
   title: string;
   release_date: string;
-  opening_crawl: string; // limited to 130 characters, fix displaying opening_crawl
+  opening_crawl: string;
 };
 
 export type StoredFilm = PersonFilm & {

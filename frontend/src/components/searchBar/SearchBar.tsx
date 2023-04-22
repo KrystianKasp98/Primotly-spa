@@ -24,7 +24,7 @@ export const SearchBar = () => {
       return prev;
     });
   };
-  // add loader for charcters content,
+
   return (
     <SearchBarWrapper>
       <Toolbar>
