@@ -16,6 +16,7 @@ export const Characters = () => {
                 name={null}
                 homeWorldName={null}
                 homeWorldPopulation={null}
+                films={null}
               />
             </BlurWrapper>
           ))
@@ -26,6 +27,7 @@ export const Characters = () => {
               name={person.name}
               homeWorldName={person.homeworld.name}
               homeWorldPopulation={person.homeworld.population}
+              films={person.films}
             />
           ))
         : null}
