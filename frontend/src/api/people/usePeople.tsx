@@ -14,7 +14,6 @@ import {
   StoredPlanet
 } from './people.types';
 
-// think about storing this in localstorage
 const storedFilms: StoredFilm[] = [];
 const storedPlanets: StoredPlanet[] = [];
 

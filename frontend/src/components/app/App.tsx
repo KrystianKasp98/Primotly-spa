@@ -26,7 +26,7 @@ const router = createBrowserRouter(routesConfig);
 export const App = () => {
   return (
     <PeopleContextController>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </PeopleContextController>
   );
 };
