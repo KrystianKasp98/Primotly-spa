@@ -16,7 +16,3 @@ export const CharacterProp = styled(Typography)(() => ({
   alignItems: 'center',
   margin: '0 0 10px'
 }));
-
-export const BlurWrapper = styled('div')(() => ({
-  filter: 'blur(1px)'
-}));

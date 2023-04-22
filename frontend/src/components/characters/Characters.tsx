@@ -2,7 +2,7 @@ import { usePeopleContext } from 'context/usePeopleContext';
 import { Spinner } from 'components/common/spinner/Spinner';
 
 import { CharacterCard } from './CharacterCard';
-import { CharactersWrapper, BlurWrapper } from './Characters.styled';
+import { CharactersWrapper } from './Characters.styled';
 
 export const Characters = () => {
   const { data, isLoading } = usePeopleContext();
@@ -11,14 +11,12 @@ export const Characters = () => {
       {isLoading ? <Spinner /> : null}
       {isLoading
         ? Array.from(new Array(10)).map(() => (
-            <BlurWrapper>
-              <CharacterCard
-                name={null}
-                homeWorldName={null}
-                homeWorldPopulation={null}
-                films={null}
-              />
-            </BlurWrapper>
+            <CharacterCard
+              name={null}
+              homeWorldName={null}
+              homeWorldPopulation={null}
+              films={null}
+            />
           ))
         : null}
       {data && !isLoading

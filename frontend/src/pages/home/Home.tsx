@@ -15,7 +15,7 @@ export const Home = () => {
         <title>Primotly-SPA</title>
       </Helmet>
       <HomeWrapper>
-        <Typography variant="h2" component="h1" align="center">
+        <Typography variant="h2" component="h1" align="center" color="yellow">
           Primotly SPA
         </Typography>
         <SearchBar />

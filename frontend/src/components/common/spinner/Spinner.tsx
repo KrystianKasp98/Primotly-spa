@@ -8,7 +8,7 @@ export const Spinner = () => {
       <Bars
         height="80"
         width="80"
-        color="#eee"
+        color="yellow"
         ariaLabel="three-dots-loading"
       />
     </SpinnerWrapper>
