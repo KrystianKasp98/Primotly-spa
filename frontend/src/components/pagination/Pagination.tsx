@@ -1,5 +1,6 @@
 import { usePeopleContext } from 'context/usePeopleContext';
 import { NavigateBeforeIcon, NavigateNextIcon } from 'components/common/icons';
+import { getLastPage } from 'utils/methods';
 
 import { PaginationButton, PaginationWrapper } from './Pagination.styled';
 
@@ -17,7 +18,7 @@ export const Pagination = () => {
       </PaginationButton>
       {pagination.page && pagination.count ? (
         <span style={{ color: '#000' }}>
-          {pagination.page} of {Math.max(Math.round(pagination.count / 10), 1)}
+          {pagination.page} of {getLastPage(pagination.count)}
         </span>
       ) : null}
       <PaginationButton

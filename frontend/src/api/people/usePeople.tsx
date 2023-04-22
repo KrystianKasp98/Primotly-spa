@@ -28,7 +28,6 @@ const defaultPagination: PeoplePagination = {
 };
 
 export const usePeople = () => {
-  // pagination.page depends only on url page when fetching data only!
   const [params, setParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
