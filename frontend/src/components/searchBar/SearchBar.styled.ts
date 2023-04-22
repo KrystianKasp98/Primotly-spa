@@ -2,15 +2,16 @@ import styled from '@emotion/styled';
 import { Box, AppBar, InputBase, Button, Toolbar } from '@mui/material';
 
 export const SearchBarWrapper = styled(Box)(() => ({
-  position: 'relative',
-  marginTop: '100px'
+  position: 'absolute',
+  top: '100px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  width: '50vw'
 }));
 
 export const StyledAppBar = styled(AppBar)(() => ({
   backgroundColor: '#fff',
-  width: '50vw',
-  position: 'absolute',
-  transform: 'translate(-50%)'
+  width: '100%'
 }));
 
 export const SearchInput = styled(InputBase)(() => ({
