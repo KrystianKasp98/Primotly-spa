@@ -9,3 +9,7 @@ export const CharactersWrapper = styled('div')(() => ({
   gap: '20px',
   position: 'relative'
 }));
+
+export const BlurWrapper = styled('div')(() => ({
+  filter: 'blur(1px)'
+}));
