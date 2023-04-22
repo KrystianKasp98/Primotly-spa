@@ -9,7 +9,18 @@ export const Home = () => {
   // add title
   return (
     <PeopleContextController>
-      <div className="home" data-testid="home">
+      <div
+        className="home"
+        data-testid="home"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '100vh',
+          padding: '100px 0 40px'
+        }}
+      >
         <Helmet>
           <title>Primotly-SPA</title>
         </Helmet>

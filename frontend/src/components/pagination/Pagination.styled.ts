@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { Box } from '@mui/material';
 
 export const PaginationWrapper = styled(Box)(() => ({
-  position: 'absolute',
-  bottom: '100px',
-  left: '50%',
-  transform: 'translate(-50%)',
+  // position: 'absolute',
+  // bottom: '100px',
+  // left: '50%',
+  // transform: 'translate(-50%)',
   width: '550px',
   height: '50px',
   backgroundColor: '#fff',

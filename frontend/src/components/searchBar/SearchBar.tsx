@@ -7,7 +7,6 @@ import { QUERY_PARAM } from '../../utils/constants';
 
 import {
   SearchBarWrapper,
-  StyledAppBar,
   Toolbar,
   SubmitButton,
   SearchInput
@@ -28,19 +27,17 @@ export const SearchBar = () => {
   // add loader for charcters content,
   return (
     <SearchBarWrapper>
-      <StyledAppBar>
-        <Toolbar>
-          <SearchInput
-            placeholder="Search characters..."
-            inputProps={{ 'aria-label': 'search' }}
-            value={searchValue}
-            onChange={handleOnChange}
-          />
-          <SubmitButton onClick={() => fetch(searchValue)} variant="contained">
-            Search
-          </SubmitButton>
-        </Toolbar>
-      </StyledAppBar>
+      <Toolbar>
+        <SearchInput
+          placeholder="Search characters..."
+          inputProps={{ 'aria-label': 'search' }}
+          value={searchValue}
+          onChange={handleOnChange}
+        />
+        <SubmitButton onClick={() => fetch(searchValue)} variant="contained">
+          Search
+        </SubmitButton>
+      </Toolbar>
     </SearchBarWrapper>
   );
 };
