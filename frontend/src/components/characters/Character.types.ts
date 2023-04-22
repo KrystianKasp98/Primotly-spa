@@ -1,5 +1,5 @@
 export type CharacterCardProps = {
-  name: string;
-  homeWorldName: string;
-  homeWorldPopulation: string;
+  name: string | null;
+  homeWorldName: string | null;
+  homeWorldPopulation: string | null;
 };

@@ -8,11 +8,11 @@ export const Characters = () => {
   return (
     <CharactersWrapper className="characters" data-testid="characters">
       {isLoading
-        ? [1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(() => (
+        ? Array.from(new Array(10)).map(() => (
             <CharacterCard
-              name="???"
-              homeWorldName="???"
-              homeWorldPopulation="???"
+              name={null}
+              homeWorldName={null}
+              homeWorldPopulation={null}
             />
           ))
         : null}
