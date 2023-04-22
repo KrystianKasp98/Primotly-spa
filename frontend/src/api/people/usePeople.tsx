@@ -18,15 +18,18 @@ import {
 
 const storedFilms: StoredFilm[] = [];
 const storedPlanets: StoredPlanet[] = [];
+const defaultPagination: PeoplePagination = {
+  next: null,
+  previous: null,
+  count: null
+};
 
 export const usePeople = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [data, setData] = useState<PersonData[]>([]);
-  const [pagination, setPagination] = useState<PeoplePagination>({
-    next: null,
-    previous: null
-  });
+  const [data, setData] = useState<PersonData[] | null>(null);
+  const [pagination, setPagination] =
+    useState<PeoplePagination>(defaultPagination);
 
   const fetchPeople = useCallback(async (urlString: string) => {
     setIsLoading(true);
@@ -34,9 +37,9 @@ export const usePeople = () => {
 
     try {
       const {
-        data: { results: peopleData, next, previous }
+        data: { results: peopleData, next, previous, count }
       } = await axios.get<PeopleResDto>(urlString);
-      setPagination({ next, previous });
+      setPagination({ next, previous, count });
 
       const newData: PersonData[] = [];
 
@@ -104,12 +107,9 @@ export const usePeople = () => {
 
       setData(newData);
     } catch (_error) {
-      setErrorMessage('Failed to fetch characters');
-      setPagination({
-        next: null,
-        previous: null
-      });
-      setData([]);
+      setErrorMessage('Failed to fetch characters'); // give some feedback to user, maybe modal, notification
+      setPagination(defaultPagination);
+      setData(null);
     } finally {
       setIsLoading(false);
     }

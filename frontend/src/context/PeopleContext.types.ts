@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { PeoplePagination, PersonData } from '../api/people/people.types';
 
 export type PeopleContextValue = {
-  data: PersonData[];
+  data: PersonData[] | null;
   fetch: (param: string) => Promise<void>;
   paginateNext: () => Promise<void>;
   paginatePrevious: () => Promise<void>;

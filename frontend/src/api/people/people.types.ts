@@ -20,10 +20,10 @@ type PersonResDto = {
 export type PeoplePagination = {
   next: string | null;
   previous: string | null;
+  count: number | null;
 };
 
 export type PeopleResDto = PeoplePagination & {
-  count: number;
   results: PersonResDto[];
 };
 
