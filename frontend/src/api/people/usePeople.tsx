@@ -1,9 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import queryString from 'query-string';
 import axios from 'axios';
 
-import { cutString } from 'utils/methods';
+import { cutString, parseUrl } from 'utils/methods';
 import { QUERY_PARAM } from 'utils/constants';
 
 import {
@@ -39,7 +38,7 @@ export const usePeople = () => {
     setIsLoading(true);
     setErrorMessage(null);
     setParams(prev => {
-      const { query } = queryString.parseUrl(urlString);
+      const { query } = parseUrl(urlString);
       const page = typeof query.page === 'string' ? query.page : '1';
       const search = typeof query.search === 'string' ? query.search : '';
 
