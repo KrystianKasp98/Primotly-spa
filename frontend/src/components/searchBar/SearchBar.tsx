@@ -3,14 +3,15 @@ import { useSearchParams } from 'react-router-dom';
 
 import { usePeopleContext } from 'context/usePeopleContext';
 
+import { QUERY_PARAM } from '../../utils/constants';
+
 import {
   SearchBarWrapper,
   StyledAppBar,
   Toolbar,
   SubmitButton,
   SearchInput
-} from '../common/mui/components';
-import { QUERY_PARAM } from '../../utils/constants';
+} from './SearchBar.styled';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
