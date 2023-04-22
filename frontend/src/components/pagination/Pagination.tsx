@@ -1,8 +1,5 @@
 import { usePeopleContext } from 'context/usePeopleContext';
-import {
-  NavigateBeforeIcon,
-  NavigateNextIcon
-} from 'components/common/mui/icons';
+import { NavigateBeforeIcon, NavigateNextIcon } from 'components/common/icons';
 
 import { PaginationButton, PaginationWrapper } from './Pagination.styled';
 
