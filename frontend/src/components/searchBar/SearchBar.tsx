@@ -10,16 +10,17 @@ import {
   SubmitButton,
   SearchInput
 } from '../common/mui';
-import { QUERY_PARAM_SEARCH } from '../../utils/constants';
+import { QUERY_PARAM } from '../../utils/constants';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
   const { fetch } = usePeopleContext();
-  const searchValue = params.get(QUERY_PARAM_SEARCH) || '';
+  const searchValue = params.get(QUERY_PARAM.search) || '';
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setParams(prev => {
-      prev.set(QUERY_PARAM_SEARCH, e.target.value);
+      prev.set(QUERY_PARAM.search, e.target.value);
+      prev.set(QUERY_PARAM.page, '1');
       return prev;
     });
   };

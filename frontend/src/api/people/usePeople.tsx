@@ -1,8 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import queryString from 'query-string';
 
 import { cutString } from 'utils/methods';
-import { QUERY_PARAM_SEARCH } from 'utils/constants';
+import { QUERY_PARAM } from 'utils/constants';
 
 import { axios } from '../axios';
 
@@ -27,7 +28,7 @@ const defaultPagination: PeoplePagination = {
 };
 
 export const usePeople = () => {
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [data, setData] = useState<PersonData[] | null>(null);
@@ -37,6 +38,16 @@ export const usePeople = () => {
   const fetchPeople = useCallback(async (urlString: string) => {
     setIsLoading(true);
     setErrorMessage(null);
+    setParams(prev => {
+      const { query } = queryString.parseUrl(urlString);
+      const page = typeof query.page === 'string' ? query.page : '1';
+      const search = typeof query.search === 'string' ? query.search : '';
+
+      prev.set(QUERY_PARAM.page, page);
+      prev.set(QUERY_PARAM.search, search);
+
+      return prev;
+    });
 
     try {
       const {
@@ -118,8 +129,10 @@ export const usePeople = () => {
     }
   }, []);
 
-  const fetch = (searchValue: string) =>
-    fetchPeople(`/people/?search=${searchValue}`);
+  const fetch = (searchValue: string, page: string = '1') =>
+    fetchPeople(
+      `${process.env.REACT_APP_API_URL}/people?page=${page}&search=${searchValue}`
+    );
 
   const paginateNext = () => {
     if (pagination.next) {
@@ -136,9 +149,10 @@ export const usePeople = () => {
   };
 
   useEffect(() => {
-    const searchValue = params.get(QUERY_PARAM_SEARCH);
+    const searchValue = params.get(QUERY_PARAM.search);
+    const page = params.get('page') || '1';
     if (searchValue) {
-      fetch(searchValue);
+      fetch(searchValue, page);
     }
   }, []);
 

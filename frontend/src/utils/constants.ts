@@ -6,4 +6,4 @@ export const ROUTE = {
 // think about character page if it's really required
 // do tests
 
-export const QUERY_PARAM_SEARCH = 'search';
+export const QUERY_PARAM = { search: 'search', page: 'page' };
