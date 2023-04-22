@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 
+import { cutString } from 'utils/methods';
+
 import { axios } from '../axios';
 
 import {
@@ -80,10 +82,7 @@ export const usePeople = () => {
 
             const personFilm = {
               title,
-              opening_crawl:
-                opening_crawl.length > 130
-                  ? `${opening_crawl.slice(0, 127)}...` // think about refactor
-                  : opening_crawl,
+              opening_crawl: cutString(opening_crawl, 127),
               release_date
             };
 

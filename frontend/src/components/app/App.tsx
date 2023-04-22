@@ -8,7 +8,7 @@ import { Home } from 'pages/home/Home';
 import { Character } from 'pages/character/Character';
 import { PeopleContextController } from 'context/PeopleContextController';
 
-import { ROUTE } from '../../constants';
+import { ROUTE } from '../../utils/constants';
 
 const routesConfig: RouteObject[] = [
   {

@@ -10,7 +10,7 @@ import {
   SubmitButton,
   SearchInput
 } from '../common/mui';
-import { QUERY_PARAM_SEARCH } from '../../constants';
+import { QUERY_PARAM_SEARCH } from '../../utils/constants';
 
 export const SearchBar = () => {
   const [params, setParams] = useSearchParams();
