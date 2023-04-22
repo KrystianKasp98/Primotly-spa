@@ -1,5 +1,8 @@
 import { usePeopleContext } from 'context/usePeopleContext';
-import { PaginationButton, PaginationWrapper } from 'components/common/mui';
+import {
+  PaginationButton,
+  PaginationWrapper
+} from 'components/common/mui/components';
 
 export const Pagination = () => {
   const { pagination, paginateNext, paginatePrevious } = usePeopleContext();

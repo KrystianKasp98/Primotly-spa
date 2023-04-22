@@ -9,7 +9,7 @@ import {
   Toolbar,
   SubmitButton,
   SearchInput
-} from '../common/mui';
+} from '../common/mui/components';
 import { QUERY_PARAM } from '../../utils/constants';
 
 export const SearchBar = () => {
