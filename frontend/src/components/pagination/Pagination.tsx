@@ -1,11 +1,11 @@
 import { usePeopleContext } from 'context/usePeopleContext';
-import { PaginationButton } from 'components/common/mui';
+import { PaginationButton, PaginationWrapper } from 'components/common/mui';
 
 export const Pagination = () => {
   const { pagination, paginateNext, paginatePrevious } = usePeopleContext();
-  console.log({ pagination, paginateNext, paginatePrevious }); // remove it later
+  console.log({ pagination }); // remove it later
   return (
-    <div className="pagination" data-testid="pagination">
+    <PaginationWrapper className="pagination" data-testid="pagination">
       <PaginationButton
         onClick={paginatePrevious}
         type="button"
@@ -20,6 +20,6 @@ export const Pagination = () => {
       >
         &gt;
       </PaginationButton>
-    </div>
+    </PaginationWrapper>
   );
 };

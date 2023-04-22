@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Box, AppBar, Toolbar, Button, InputBase } from '@mui/material';
 
+// searchBar
 const SearchBarWrapper = styled(Box)(() => ({
   position: 'relative',
   marginTop: '100px'
@@ -27,6 +28,20 @@ const SubmitButton = styled(Button)(() => ({
   }
 }));
 
+// pagination
+const PaginationWrapper = styled(Box)(() => ({
+  position: 'absolute',
+  bottom: '100px',
+  left: '50%',
+  transform: 'translate(-50%)',
+  width: '500px',
+  backgroundColor: '#fff',
+  borderRadius: '7px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+}));
+
 const PaginationButton = styled(Button)(() => ({
   color: '#000',
   backgroundColor: '#fff',
@@ -42,5 +57,6 @@ export {
   Toolbar,
   SubmitButton,
   SearchInput,
+  PaginationWrapper,
   PaginationButton
 };
