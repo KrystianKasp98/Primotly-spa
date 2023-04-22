@@ -6,5 +6,6 @@ export const CharactersWrapper = styled('div')(() => ({
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
-  gap: '20px'
+  gap: '20px',
+  position: 'relative'
 }));
