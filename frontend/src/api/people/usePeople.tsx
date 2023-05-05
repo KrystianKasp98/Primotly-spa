@@ -136,7 +136,7 @@ export const usePeople = () => {
 
   const fetch = (searchValue: string, page: string = '1') =>
     fetchPeople(
-      `${process.env.REACT_APP_API_URL}/people?page=${page}&search=${searchValue}`
+      `https://swapi.dev/api/people?page=${page}&search=${searchValue}`
     );
 
   const paginateNext = () => {
